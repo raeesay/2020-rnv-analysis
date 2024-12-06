@@ -1,0 +1,128 @@
+<!--RNV Delays HTML webpage 
+	Beginner's Practical SS2021 by Raeesa Yousaf
+	supervised by Dennis Aumiller and Philip Hausner -->
+
+<!DOCTYPE html>
+<html lang = 'de'>
+
+<head>
+	
+	<meta content = "text/html;charset=utf-8" http-equiv = "Content-Type">
+	<meta content = "utf-8" http-equiv = "encoding">
+
+	<link rel = "stylesheet" href = "rnv-delays.css">
+	<title> RNV Delays </title>
+	
+	<!-- load Google Chart libraries and jQueryy libraries -->
+	<script src = "http://code.jquery.com/jquery-latest.js"></script>
+	<script src = "https://www.gstatic.com/charts/loader.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src = "rnv-delays.js"></script>
+	
+	<style>
+		th {
+			text-align: left;
+		}
+	</style>
+</head>
+
+
+
+<body style = "font-family: verdana">
+
+	<div class = "header" id = "header">
+		<h1> RNV Verspätungen </h1>
+	</div>
+		
+		
+	<!-- user submission to generate url for json data -->
+	<div class = "searchbar" id = "searchbar">
+		<form onSubmit = "return process();">
+			
+			<!-- ask for line -->
+			<label for = "label">Linie:</label>
+			<input type = "number" id = "label" placeholder = "Linie">
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			
+			<!-- ask for time frame -->
+			<label for = "time_start">Von:</label>
+			<input type = date id = "time_start" name = "time_start">
+
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			
+			<label for = "time_start">Bis:</label>
+			<input type = date id = "time_end" name = "time_end">
+			<input type = "submit" id = "submit">
+		</form>
+	</div>
+	
+
+	<!-- space for map of chosen route, done with openstreet map -->
+	<div class = "frame1" id = "frame1">
+		<iframe width = "100%" height = "100%" frameborder = "0" scrolling = "no" marginheight = "0" marginwidth = "0" 
+		src = "https://www.openstreetmap.org/export/embed.html?bbox=8.688678145408632%2C49.408596285433234%2C8.695759177207949%2C49.41155257691629&amp;layer=mapnik" 
+		style = "border: 1px solid black"></iframe> <br/> <small> <a href = "https://www.openstreetmap.org/#map=18/49.41007/8.69222"> View Larger Map </a></small>
+	</div>
+	
+	<!-- informational text -->
+	<div class = "frame2" id = "frame2">
+		<p> Der <a href="https://www.rnv-online.de/fahrtinfo/">Rhein-Neckar-Verkehr GmbH</a> (kurz: RNV) bietet offenen Zugang zu ihren Daten über vergangene Reisen in Verkehrsgebiet (Heidelberg, Mannheim, Ludwighafen). <br>
+			Diese Seite verschafft einen Überblick über Verspätungen bestimmter Linien und an bestimmten Orten. <br>
+		</p>
+		<p>
+			Um selbst die Daten in einem gewissen Zeitraum zu sehen, muss man lediglich die gewünschte Bus- oder Bahnlinie und den Zeitraum (2020) in der Leiste oben angeben. <br>
+			Die Verspätungen werden in Sekunden angegeben, laut der RNV Definition zählt eine Verspätung erst ab<b> 3 Minuten</b>, also 180 Sekunden. <br>
+		</p>
+	</div>
+	
+	
+	<!-- information on chosen route -->
+	<div class = "frame3" id = "frame3">
+		<h2> Ausgewählte Linie und Zeitraum </h2>
+		<table id = "info_table" style = "width:100%">
+			<tr>
+				<th> Linie </th>
+				<th> Start Datum </th> 
+				<th> End Datum </th>
+			</tr>
+			<tr>
+				<td id = "table_linie">23</td>
+				<td id = "table_start">01.02.2020</td>
+				<td id = "table_end">01.02.2020</td>
+			</tr>
+		</table>
+	</div>
+	
+
+	<div class = "subheader" id = "subheader">
+		<h3> Visualisierungen und Plots </h3>
+	</div>
+	
+	
+	<!-- bar chart showing average delay time for each station upon arrival -->
+	<div class = "plot1" id = "plot1">
+	</div>
+	
+	
+	<!-- bar chart showing average delay time for each station upon departure -->
+	<div class = "plot2" id = "plot2">
+	</div>
+	
+
+	<!-- bar chart showing average delay time per hour upon arrival -->
+	<div class = "plot3" id = "plot3">
+	</div>
+	
+	
+	<!-- bar chart showing average delay time per hour upon departure -->
+	<div class = "plot4" id = "plot4">
+	</div>
+	
+	
+	<div class = "footer" id = "footer">
+		<p> RNV Delays, 2021 </p>
+	</div>
+
+</body>
+</html>
